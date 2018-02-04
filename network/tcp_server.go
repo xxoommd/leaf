@@ -1,10 +1,11 @@
 package network
 
 import (
-	"github.com/xxoommd/leaf/log"
 	"net"
 	"sync"
 	"time"
+
+	"github.com/xxoommd/leaf/log"
 )
 
 type TCPServer struct {

@@ -1,14 +1,16 @@
 package module
 
 import (
-	"github.com/xxoommd/leaf/conf"
-	"github.com/xxoommd/leaf/log"
 	"runtime"
 	"sync"
+
+	"github.com/xxoommd/leaf/conf"
+	"github.com/xxoommd/leaf/log"
 )
 
 type Module interface {
 	OnInit()
+	BeforeDestroy()
 	OnDestroy()
 	Run(closeSig chan bool)
 }
@@ -44,6 +46,7 @@ func Init() {
 func Destroy() {
 	for i := len(mods) - 1; i >= 0; i-- {
 		m := mods[i]
+		m.mi.BeforeDestroy()
 		m.closeSig <- true
 		m.wg.Wait()
 		destroy(m)
