@@ -1,11 +1,12 @@
 package module
 
 import (
+	"time"
+
 	"github.com/xxoommd/leaf/chanrpc"
 	"github.com/xxoommd/leaf/console"
 	"github.com/xxoommd/leaf/go"
 	"github.com/xxoommd/leaf/timer"
-	"time"
 )
 
 type Skeleton struct {

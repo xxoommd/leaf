@@ -8,6 +8,7 @@ import (
 	"path"
 	"strings"
 	"time"
+	"util"
 )
 
 // levels
@@ -150,4 +151,8 @@ func Fatal(format string, a ...interface{}) {
 
 func Close() {
 	gLogger.Close()
+}
+
+func PrintGoID(msg string) {
+	Debug("%s %d", msg, util.GetGoID())
 }
