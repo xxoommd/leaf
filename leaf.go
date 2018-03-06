@@ -1,13 +1,14 @@
 package leaf
 
 import (
+	"os"
+	"os/signal"
+
 	"github.com/xxoommd/leaf/cluster"
 	"github.com/xxoommd/leaf/conf"
 	"github.com/xxoommd/leaf/console"
 	"github.com/xxoommd/leaf/log"
 	"github.com/xxoommd/leaf/module"
-	"os"
-	"os/signal"
 )
 
 func Run(mods ...module.Module) {
