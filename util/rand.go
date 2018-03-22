@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+const allString = "01234567890~!@#$%^&*()_+[]{};:<>?|qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+
 func init() {
 	rand.Seed(time.Now().UnixNano())
 }
@@ -88,4 +90,13 @@ func RandIntervalN(b1, b2 int32, n uint32) []int32 {
 	}
 
 	return r
+}
+
+func RandString(n int) string {
+	bytes := []byte(allString)
+	result := []byte{}
+	for i := 0; i < n; i++ {
+		result = append(result, bytes[rand.Intn(len(bytes))])
+	}
+	return string(result)
 }
