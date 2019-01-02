@@ -1,11 +1,11 @@
 package module
 
 import (
-	"runtime"
 	"sync"
 
 	"github.com/xxoommd/leaf/conf"
 	"github.com/xxoommd/leaf/log"
+	"go.uber.org/zap"
 )
 
 type Module interface {
@@ -62,11 +62,12 @@ func destroy(m *module) {
 	defer func() {
 		if r := recover(); r != nil {
 			if conf.LenStackBuf > 0 {
-				buf := make([]byte, conf.LenStackBuf)
-				l := runtime.Stack(buf, false)
-				log.Error("%v: %s", r, buf[:l])
+				// buf := make([]byte, conf.LenStackBuf)
+				// l := runtime.Stack(buf, false)
+				// log.Error("%v: %s", r, buf[:l])
+				log.ZapLogger.Error("recovery stack", zap.Stack("recovery"))
 			} else {
-				log.Error("%v", r)
+				log.ZapLogger.Error("recovery error", zap.Any("error", r))
 			}
 		}
 	}()

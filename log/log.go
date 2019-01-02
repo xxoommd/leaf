@@ -10,7 +10,11 @@ import (
 	"time"
 
 	"github.com/xxoommd/leaf/util"
+	"go.uber.org/zap"
 )
+
+// ZapLogger replaces default leaf logger
+var ZapLogger *zap.Logger
 
 // levels
 const (
